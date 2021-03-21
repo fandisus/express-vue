@@ -2,11 +2,10 @@ import {Request, Response} from 'express';
 import {DataCommunicator, JSONResponse } from '@icfm/trust';
 import {User} from '../../models/User';
 import AppConnections from '../../classes/AppConnections';
-const globalAny:any = global;
 
 export async function get(req: Request,res: Response):Promise<any> {
   if (res.locals.login) res.redirect('/user');
-  return { title:'Login', topMenu: globalAny.guestTopMenu};
+  return { title:'Login'};
 }
 
 export async function post(req: Request,res: Response):Promise<any> {

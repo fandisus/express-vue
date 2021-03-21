@@ -13,7 +13,7 @@ export default function (req: Request, res: Response, next:NextFunction) {
       new MenuItem('/about', 'About')
     ]);
     guestTopMenu.leftLogo = '/images/dot.png';
-    res.locals.topMenu;
+    res.locals.topMenu = guestTopMenu;
     next(); return; //When no login/cookie, next route.
   }
 

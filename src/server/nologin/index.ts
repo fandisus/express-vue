@@ -1,5 +1,3 @@
-const globalAny:any = global;
-
 export async function get():Promise<any> {
   const warning = '';
   return { title:'Home', warning:warning};
