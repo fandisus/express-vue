@@ -1,0 +1,6 @@
+if goauthclientid === undefined
+  script.
+    alert('google Auth need goauthclientid defined');
+else
+  meta(name="google-signin-client_id", content=goauthclientid)
+  script(src="https://apis.google.com/js/platform.js", async, defer)

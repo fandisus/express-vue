@@ -1,0 +1,28 @@
+extends ../_templates/topmenu_layout
+block htmlHead
+  style(type='text/css').
+    body > .grid { height: 70vh; }
+    body > .center.aligned.grid .column { max-width: 450px; }
+  script(data-main="/js/login.js" src="/libs/require.js")
+
+block content
+
+  .ui.middle.aligned.center.aligned.grid#app
+    .column
+      h2.ui.teal.image.header
+        img.image(src='/images/dot.png')
+        .content Log-in to your account
+      .ui.large.form#frmLogin
+        .ui.stacked.segment
+          .field
+            .ui.left.icon.input
+              i.user.icon
+              input(type='text' v-model='username' placeholder='Username')
+          .field
+            .ui.left.icon.input
+              i.lock.icon
+              input(type='password' v-model='password' placeholder='Password', @keypress.enter='tryLogin')
+          .ui.fluid.large.blue.submit.button(@click='tryLogin') Login
+        .ui.error.message
+      .ui.message New to us? 
+        a(href='#') Sign Up

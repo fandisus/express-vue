@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title ? title : 'UNTITLED'
+    include stdjscss
+    block htmlHead
+  body
+    include topmenunav
+    block content
+    script.
+      $(document).ready(function () {
+        $('#m-sidebar-toggle').click(() => { //No template yet. Need to make one pugincludes.
+          $('#mobilesidebar').sidebar('toggle');
+        });
+        $('.ui.dropdown').dropdown({transition:'drop', on:'hover'});
+        $('.ui.accordion').accordion();
+      });
+    block bodyend

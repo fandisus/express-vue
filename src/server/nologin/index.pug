@@ -1,0 +1,27 @@
+extends ../_templates/topmenu_layout
+block htmlHead
+
+block content
+  .ui.container
+    h1 Trust Node Template
+    p Hi. Welcome to Trust Node Template.
+    if warning
+      pre #{warning}
+    hr
+    p This template uses NodeJS: ExpressJS, plus the packages below:
+    ul
+      li @icfm/Trust
+      li @icfm/express-folder-route
+      li chokidar for hot reloading
+      li express, pug
+      li (pg + pg-format, mysql)
+      li cookie-parser
+      li express-formidable <em>For handling post and file uploads</em>
+      li fs-extra <em>For handling file IO</em>
+      li jimp <em>For handling images</em>
+      li exceljs <em>For handling excel files</em>
+      li morgan <em>For server logging</em>
+      li lodash
+      
+    p On the menubar is the login button to the example login page. You can also use the login button below.
+    a.ui.blue.button(href='/login' role='button') Login

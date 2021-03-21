@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    include stdjscss
+    block htmlHead
+  body
+    include sidebarnav
+    style.
+      main { margin-left:15em; }
+      @media (max-width:767px) { main {margin-left: 0}}
+    main
+      block content
+    script.
+      $(document).ready(function () {
+        $('#m-sidebar-toggle').click(() => {
+          $('#mobilesidebar').sidebar('toggle');
+        });
+        $('.ui.dropdown').dropdown({transition:'drop', on:'hover'});
+        $('.ui.accordion').accordion();
+      });
+    block bodyend

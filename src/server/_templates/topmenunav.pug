@@ -1,0 +1,55 @@
+//- topMenu: { showLogo:, leftLogo:, rightLogo:, barColor:, menus:[]}
+//- barcolor is semantic-ui color class
+if topMenu === undefined
+  script.
+    alert('Topmenunav need "topMenu" variable defined');
+else
+  //- Only appear for laptop and tablets (larger screen)
+  - colorCodes = {red:'#db2828', blue:'#2185D0',teal:'#00B5AD'};
+  .tablet.computer.only
+    header.ui.top.computer
+      if topMenu.showLogo !== undefined
+        .ui.container
+          #logoheader
+            if topMenu.leftLogo !== undefined
+              img.ui.middle.aligned.image(src=topMenu.leftLogo)
+            if topMenu.rightLogo !== undefined
+              img.ui.middle.aligned.right.floated.image(src=topMenu.rightLogo)
+            div(style="clear:both;")
+
+      #menu-strip
+        - stickyStyles = {'z-index':'801', background:colorCodes[topMenu.barColor]}
+        .ui.sticky(style=stickyStyles)
+          .ui.container
+            - var classes = ['ui', 'inverted','menu', topMenu.barColor]
+            .ui.inverted.menu(class=classes)
+              a.item(href='/'): i.home.icon
+              //- Kalau mau menu popup dengan accordion seperti di tag-toyota, bisa buka project terkait.
+              each menu in topMenu.menus
+                if menu.href !== undefined
+                  a.item(href=menu.href)= menu.text
+                else
+                  .ui.dropdown.item #{menu.text}
+                    i.dropdown.icon
+                    .menu
+                      each subMenu in menu.content
+                        a.item(href=subMenu.href) #{subMenu.text}
+              a.right.item(href="/login") login
+//- <!--Input cari-->
+//- <div class="right menu">
+//-   <div class="item">
+//-     <div class="ui mini icon input">
+//-       <input type="text" placeholder="Cari..." id="txtCari"/>
+//-       <i class="search link icon" id="searchIcon"></i>
+//-     </div>
+//-   </div>
+//- </div>
+//- <script type="text/javascript">
+//-   var cari = function() {
+//-     var teks = document.getElementById('txtCari').value;
+//-     window.location = '/cari/' + encodeURI(teks);
+//-   };
+//-   $('#searchIcon').click((e)=>{cari();});
+//-   $('#txtCari').keypress((e) => {if (e.key === 'Enter') cari();});
+//- </script>
+//- <!--Input cari END-->

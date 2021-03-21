@@ -1,0 +1,43 @@
+//- sidebarmenus: [{*href:, icon:, text:, content:[{href:, icon:, text:}]}]
+//- sidebarhomelogo: "homelogourl.png"
+if sidebarmenus === undefined
+  script.
+    alert('Sidebarnav need "sidebarmenu" defined');
+else
+  //- Biar bisa pakai class "computer only", harus pakai .ui.grid
+  //- Pakai .ui.grid, biar tampilan gak aneh, harus set margin:0, dan anaknya padding:0
+  style.
+    #sidebarnav.ui.grid>* { padding:0; }
+    #sidebarnav.ui.grid { margin: 0; }
+  .ui.grid.computer.only.tablet.only#sidebarnav
+    nav.ui.inverted.blue.sidebar.visible.vertical.accordion.borderless.menu(style="box-shadow: 1px 1px 2px 0 rgba(34,36,38,1);")
+      if sidebarhomelogo !== undefined
+        div.item(style="background: white;")
+          a.ui.logo.icon.image(href="/user")
+            img(src=sidebarhomelogo)
+      else
+        div.item(style="background: white;")
+          a.ui.logo.icon.image(href="/user")
+            i.home.icon.massive
+      each menu in sidebarmenus
+        if menu.href !== undefined
+          a.item(href=menu.href)
+            i(class=menu.icon+" icon left")
+            | #{menu.text}
+        else
+          .item
+            .title
+              .dropdown.icon
+              i(class=menu.icon+" icon left")
+              | #{menu.text}
+            .content
+              each submenu in menu.content
+                a.item(href=submenu.href)
+                  i(class=submenu.icon+" icon left")
+                  | #{submenu.text}
+      a.item(href='/user/change-password')
+        i.privacy.icon.left
+        | Change password
+      a.item(href='/user/logout')
+        i.power.icon.left
+        | Logout

@@ -1,0 +1,114 @@
+extends ../_templates/sidebar_layout
+block bodyend 
+  script(data-main='/js/user-management.js' src='/libs/require.js')
+
+block htmlHead
+  style.
+    #app { padding: 15px; }
+    .ui.table { white-space: nowrap; }
+    .ui.table td { padding: 0.10em; }
+    #modUser .ui.form .inline.field label:first-child { width: 120px; }
+    #modCPass .ui.form .inline.field label:first-child { width: 120px; }
+    .islink { cursor:pointer; }
+
+block content
+  #app.ui.container
+    h1 User Management
+    #tabs
+      a.ui.basic.circular.button.active(data-tab="tabUser") Users
+      a.ui.basic.circular.button(data-tab="tabProfiles") ACL Profiles
+
+    .ui.tab.segment.active(data-tab="tabUser")
+      button.ui.mini.green.button(@click='showModUser')
+        i.plus.icon
+        | Add User
+      button.ui.mini.button(@click='getUsers')
+        i.refresh.icon
+        | Reload Users
+      table#table.ui.very.compact.striped.collapsing.table
+        thead: tr
+          th
+          th Name
+          th Username
+          th ACL Profile
+          th Department
+          th Role
+          th Email
+          th Phone
+          th C.Start
+          th C.End
+        tbody: tr(v-for="u in users")
+          td
+            i.blue.pencil.icon.islink(@click='showModUser(u)')
+            i.lock.icon.islink(@click='showCPass(u)')
+            i.red.delete.icon.islink(@click='delUser(u)')
+          td {{u.name}}
+          td {{u.username}}
+          td {{u._aclProfile.name}}
+          td {{u.department}}
+          td {{u.role}}
+          td {{u.email}}
+          td {{u.phone}}
+          td {{u.cstart}}
+          td {{u.cend}}
+
+      #modUser.ui.small.modal
+        .header User
+        .content
+          .ui.small.form
+            .inline.field
+              label Full Name
+              input(type="text", v-model="modUser.name")
+            .inline.field
+              label Username
+              input(type="text", v-model="modUser.username", :disabled="modUser.id != 0")
+            template(v-if="modUser.id===0")
+              .inline.field
+                label Password
+                input(type="password", v-model="modUser.pass")
+              .inline.field
+                label Confirm Password
+                input(type="password", v-model="modUser.cpass")
+            .inline.field
+              label Department
+              select(v-model="modUser.department")
+                option(:value="d", v-for="d in departments", :key='d') {{d}}
+            .inline.field
+              label Role
+              select(v-model="modUser.role")
+                option(:value="r", v-for="r in roles", :key="r") {{r}}
+            .inline.field
+              label Email
+              input(type="email" v-model="modUser.email")
+            .inline.field
+              label Phone
+              input(type="text" v-model="modUser.phone")
+            .inline.field
+              label ACL Profile
+              select(v-model="modUser.aclProfile")
+                option(:value="p.name", v-for="(p, idx) in aclProfiles", :key="p.name") {{p.name}}
+        .actions
+          .ui.green.button(@click="saveUser") Save
+          .ui.cancel.button Cancel
+
+        
+      #modCPass.ui.small.modal
+        .header Change Password
+        .content
+          .ui.form
+            .inline.field
+              label Username
+              input(type="text", v-model="modPassword.target.username", disabled)
+            .inline.field
+              label New Password
+              input(type="password", v-model="modPassword.pass")
+        .actions
+          .ui.green.button(@click="changePass")
+            i.disk.icon
+            | Set Password
+          .ui.cancel.button
+            i.escape.icon
+            | Cancel
+
+    .ui.tab.segment(data-tab="tabProfiles")
+      profiles(ref="profiles" :menus="menuOptions", :acls="aclProfiles", @ACLUpdated="ACLProfileUpdated")

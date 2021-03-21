@@ -1,0 +1,12 @@
+html(lang="en")
+  head
+    title Error #{statusCode}
+    include /server/_templates/stdjscss
+  body
+    br
+    br
+    .ui.container
+      .ui.segment
+        .ui.message.red
+          h1.header(style='font-size:2em') #{statusCode} - #{error.message}
+        pre(style="text-align:left") #{error.stack}

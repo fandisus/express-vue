@@ -1,0 +1,12 @@
+//- Need field: fbappid. Perhaps need to create if no appid.
+if fbappid === undefined
+  script.
+    alert('FBML need appid defined');
+else
+  script.
+    window.fbAsyncInit = function() {
+      FB.init({appId:'#{fbappid}', cookie:true, xfbml:true, version:'v4.0', status:true });
+      FB.AppEvents.logPageView();
+      // FB.getLoginStatus(function(response) { statusChangeCallback(response); });
+    };
+    (function(d, s, id){ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://connect.facebook.net/en_US/sdk.js"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));

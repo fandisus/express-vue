@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title= title ? title : 'UNTITLED'
+    include stdjscss
+    block htmlHead
+  body
+    include sidebarnav
+    style.
+      main { margin-left:15em; }
+      @media (max-width:767px) { main {margin-left: 0}}
+    main
+      //- Top menubar (for logout and others)
+      .ui.top.attached.menu: .right.menu
+        a.item: i.mail.icon
+        .ui.dropdown.item
+          i.user.icon
+          .menu
+            a.item(href='/user/change-password')
+              i.privacy.icon
+              | Change password
+            a.item(href='/user/logout')
+              i.power.icon
+              | Logout
+      block content
+    script.
+      $(document).ready(function () {
+        $('#m-sidebar-toggle').click(() => { //No template yet. Need to make one pugincludes.
+          $('#mobilesidebar').sidebar('toggle');
+        });
+        $('.ui.dropdown').dropdown({transition:'drop', on:'hover'});
+        $('.ui.accordion').accordion();
+      });
+    block bodyend
