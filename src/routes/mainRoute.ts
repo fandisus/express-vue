@@ -1,8 +1,6 @@
 import { Router, Request, Response } from 'express';
 import folderRoute, {RouteHandler} from '@icfm/express-folder-route';
-import { TopMenu, MenuItem } from '../classes/TopMenu';
 import Logger from 'jet-logger';
-const globalAny:any = global;
 
 // Init router and path
 const router = Router();

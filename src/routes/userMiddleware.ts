@@ -17,10 +17,8 @@ const midware = function(req: Request, res: Response, next: NextFunction) {
       if (oUser._aclProfile === undefined) res.redirect('/user/logout');
       menus = oUser._aclProfile?.menus;
     }
-    res.locals.menus= {
-      sidebarmenus: menus,
-      sidebarhomelogo: "/images/dot.png"
-    };
+    res.locals.sidebarmenus = menus;
+    res.locals.sidebarhomelogo = "/images/dot.png";
     next();
   })();
 }

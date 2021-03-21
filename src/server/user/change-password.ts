@@ -4,9 +4,7 @@ import {User} from '../../models/User';
 import { DataCommunicator, JSONResponse } from '@icfm/trust';
 
 export async function get(req: Request,res: Response):Promise<any> {
-  const sidebarmenus = res.locals.menus.sidebarmenus;
-  const sidebarhomelogo = res.locals.menus.sidebarhomelogo;
-  return { title:'Home', sidebarmenus:sidebarmenus, sidebarhomelogo:sidebarhomelogo };
+  return { title:'Change password' };
 }
 
 export async function post(req: Request,res: Response):Promise<any> {

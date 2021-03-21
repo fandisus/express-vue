@@ -9,9 +9,7 @@ import UserACL from '../../models/UserACL';
 export async function get(req: Request,res: Response):Promise<any> {
   const login = <User> res.locals.login;
   if (!login.canAccess(MenuNames.USERS, 'enter')) { res.status(403); res.send('403 Unauthorized');}
-  const sidebarmenus = res.locals.menus.sidebarmenus;
-  const sidebarhomelogo = res.locals.sidebarhomelogo;
-  return { title:'User Management', sidebarmenus:sidebarmenus, sidebarhomelogo:sidebarhomelogo };
+  return { title:'User Management' };
 }
 
 export async function post(req: Request,res: Response):Promise<any> {
