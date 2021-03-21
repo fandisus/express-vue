@@ -1,12 +1,18 @@
-import { Router } from 'express';
-import folderRoute from '@icfm/express-folder-route';
+import { Router, Request, Response } from 'express';
+import folderRoute, {RouteHandler} from '@icfm/express-folder-route';
 import { TopMenu, MenuItem } from '../classes/TopMenu';
-
+import Logger from 'jet-logger';
 const globalAny:any = global;
 
 // Init router and path
 const router = Router();
 const cwd = process.cwd();
+
+RouteHandler.before = function(req:Request, res:Response) {
+  let log = { method:req.method, path:req.path, ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress};
+  Logger.Info(log);
+}
+RouteHandler.after = function(req:Request, res:Response) {}
 
 //Route for guest (no need to login)
 const routeNoLogin = folderRoute(cwd+'/dist/server/nologin');

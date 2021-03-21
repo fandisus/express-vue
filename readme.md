@@ -1,17 +1,5 @@
-To build dist:
-- npm run build
+# vue-express
 
-To dev (hot reload):
-- npm run buildWatcher (if watcher.ts changed)
-- pm2 start ecosystem.config.js  (will start watcher and app)
+ExpressJS and VueJS boilerplate. Using gulp-vue-single-file-component (and require.js) to compile and run vue.js SFC (.vue)
 
-To deploy:
-- (git fetch, git pull)
-- npm run build
-
-
-Todo:
-- watcher.ts  testing untuk running pug
-- watcher.ts  tambahin fitur compile .vue
-- builder.ts  tambahin fitur compile .vue
-- DONE
+Documentation is not complete yet.

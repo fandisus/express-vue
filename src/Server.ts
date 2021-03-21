@@ -34,7 +34,7 @@ app.set('view engine', 'pug');
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {  //TODO: Research
-    app.use(morgan('dev'));
+    // app.use(morgan('dev'));
 }
 
 // Security
@@ -43,15 +43,14 @@ if (process.env.NODE_ENV === 'production') { //TODO: Research
 }
 
 
-
-// The routes
-import baseRouter from './routes/mainRoute';
-app.use('/',baseRouter);
-
 /************************************************************************************
  *                              Serve public files
  ***********************************************************************************/
 app.use(express.static(__dirname+'\\public'));
+
+// The routes
+import baseRouter from './routes/mainRoute';
+app.use('/',baseRouter);
 
 
 //Error 404
