@@ -116,27 +116,27 @@ exports.prod = series(
 
 function watchDev() {
 	obfuscate = false;
-	watch(frontendLibsSrc, series(frontendLibs));
-	watch(amdJsSrc, series(amdJs));
-	watch(vueSrc, series(vue));
-	watch(saasSrc,series('saas'));
-	watch(tsSrc,series(ts));
-	watch(htmlSrc,series(html));
-	watch(imageFiles,series(images));
-	watch(pugFiles, series(pug));
-	watch(otherSrc, series(others));
+	watch(frontendLibsSrc, {delay:500 }, series(frontendLibs));
+	watch(amdJsSrc, {delay:500 }, series(amdJs));
+	watch(vueSrc, {delay:500 }, series(vue));
+	watch(saasSrc, {delay:500 }, series('saas'));
+	watch(tsSrc, {delay:500 }, series(ts));
+	watch(htmlSrc, {delay:500 }, series(html));
+	watch(imageFiles, {delay:500 }, series(images));
+	watch(pugFiles, {delay:500 }, series(pug));
+	watch(otherSrc, {delay:500 }, series(others));
 }
 function watchProd() {
 	obfuscate = true;
-	watch(frontendLibsSrc, series(frontendLibs));
-	watch(amdJsSrc, series(amdJs));
-	watch(vueSrc, series(vue));
-	watch(saasSrc,series('saas'));
-	watch(tsSrc,series(ts));
-	watch(htmlSrc,series(html));
-	watch(imageFiles,series(images));
-	watch(pugFiles, series(pug));
-	watch(otherSrc, series(others));
+	watch(frontendLibsSrc, {delay:500 }, series(frontendLibs));
+	watch(amdJsSrc, {delay:500 }, series(amdJs));
+	watch(vueSrc, {delay:500 }, series(vue));
+	watch(saasSrc, {delay:500 }, series('saas'));
+	watch(tsSrc, {delay:500 }, series(ts));
+	watch(htmlSrc, {delay:500 }, series(html));
+	watch(imageFiles, {delay:500 }, series(images));
+	watch(pugFiles, {delay:500 }, series(pug));
+	watch(otherSrc, {delay:500 }, series(others));
 }
 exports.watch = watchDev;
 exports.watchProd = watchProd;
