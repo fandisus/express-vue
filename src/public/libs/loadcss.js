@@ -3,8 +3,8 @@ var require = {
   paths: { 
     'vue': 'vue.min',
     'jquery': 'jquery-3.3.1.min',
-    'semantic': 'Semantic-UI-2.4/semantic.min',
-    'sweetalert': 'sweetalert2-7.0.6/sweetalert2.min',
+    'semantic': 'fomantic-2.8/semantic.min',
+    'sweetalert': 'sweetalert2.all.min',
     'lodash':'lodash.min',
     'moment':'moment.min',
   }
