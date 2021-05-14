@@ -15,7 +15,6 @@ loadCss = function(config) {
 
   if (config.content) {
     var style  = document.createElement('style');
-    style.type = 'text/css';
     
     if (style.styleSheet)
       style.styleSheet.cssText = config.content;
