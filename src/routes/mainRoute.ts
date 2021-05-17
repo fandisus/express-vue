@@ -8,6 +8,9 @@ const cwd = process.cwd();
 
 RouteHandler.before = function(req:Request, res:Response) {
   let log = { method:req.method, path:req.path, ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress};
+  if (req.method === 'POST') {
+    if (!['/login','/user/change-password'].includes(req.originalUrl)) log = {...log, ...{fields:req.fields, files: req.files}};
+  }
   Logger.Info(log);
 }
 RouteHandler.after = function(req:Request, res:Response) {}
