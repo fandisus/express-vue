@@ -15,7 +15,7 @@ module.exports = {
       PGLOCAL:'{"host":"localhost","user":"postgres","pass":"postgres","dbname":"test","port":5432}',
     },
     out_file: "/dev/null",
-    error_file: "/dev/null",
+    error_file: "pm2error.log",
     watch: ['dist'],
     // wach_delay:500
   }],
