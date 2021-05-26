@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 var app;
 $(document).ready(()=>{
   var uri='/login';

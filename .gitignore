@@ -1,3 +1,4 @@
 node_modules
 dist
 jet-logger.log
+pm2error.log

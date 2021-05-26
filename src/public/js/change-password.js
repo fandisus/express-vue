@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 $(document).ready(()=> {
   let uri='/user/change-password';
 

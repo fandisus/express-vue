@@ -66,7 +66,6 @@
 </template>
 
 <script>
-// import semantic from 'semantic';
 let uri = '/user/user-management'
 export default {
   props: ['acls', 'menus'],

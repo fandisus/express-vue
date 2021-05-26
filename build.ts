@@ -1,11 +1,8 @@
-/**
- * Remove old files, copy front-end ones.
- */
-
 import fse from 'fs-extra';
 import Logger from 'jet-logger';
 import childProcess from 'child_process';
 import commandLineArgs from 'command-line-args';
+import vuecom from './vue-compile';
 
 // Setup logger
 const logger = new Logger();
@@ -24,13 +21,15 @@ const options = commandLineArgs([
 		logger.info('removed old compile');
 
 		//Compile tsc
-		await exec('tsc --build tsconfig.prod.json', './');
+		// await exec('tsc --build tsconfig.prod.json', './');
+		await exec('tsc --build', './');
 		logger.info('tsc finished');
 
 		// Copy pug files
 		await exec('copyfiles ./**/*.pug ./../dist/', './src'); //copyfiles adalah module node global.
 
 		// Compile n copy vues
+		vuecom.compileAll('./src', './dist');
 
 		//Obfuscate tsc and vue result
 		if (options.obfuscate) {

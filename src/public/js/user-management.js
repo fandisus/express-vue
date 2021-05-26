@@ -1,13 +1,9 @@
-import Vue from 'vue';
-import profiles from './../js/user-management/profiles.js';
-
 $(document).ready(()=> {
   // import profiles from './user-management/profiles.js';
   var uri='/user/user-management';
 
   window.app = new Vue({
     el:'#app',
-    components:{profiles},
     data:{
       modUser:{
         id:0, name:'', username:'', pass:'', cpass:'',
