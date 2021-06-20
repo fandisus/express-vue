@@ -1,8 +1,8 @@
-import * as chokidar from 'chokidar';
+import chokidar from 'chokidar';
 import fs from 'fs-extra';
 import Logger, { Formats, LoggerModes } from 'jet-logger';
 import childProcess from 'child_process';
-import path from 'path';
+// import path from 'path';
 import vuecom from './vue-compile';
 // import { resolve } from 'path';
 // import e from 'express';
