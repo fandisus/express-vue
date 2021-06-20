@@ -1,7 +1,0 @@
-{
-	"extends": "./tsconfig.json",
-	"include": [
-		"src/server/_tabledefs/t2_user_acl.ts"
-	]
-}	]
-}
