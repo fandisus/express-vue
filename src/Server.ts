@@ -1,6 +1,4 @@
 import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
-import helmet from 'helmet';
 
 import express, { Request, Response } from 'express';
 import StatusCodes from 'http-status-codes';
@@ -30,18 +28,6 @@ app.use(cookieParser());
 
 app.locals.basedir = __dirname; //Basedir for pug root path
 app.set('view engine', 'pug');
-
-
-// Show routes called in console during development
-if (process.env.NODE_ENV === 'development') {  //TODO: Research
-    // app.use(morgan('dev'));
-}
-
-// Security
-if (process.env.NODE_ENV === 'production') { //TODO: Research
-    app.use(helmet());
-}
-
 
 /************************************************************************************
  *                              Serve public files
