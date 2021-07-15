@@ -26,7 +26,7 @@ const options = commandLineArgs([
 		logger.info('tsc finished');
 
 		// Copy pug files
-		await exec('copyfiles ./**/*.pug ./../dist/', './src'); //copyfiles adalah module node global.
+		await exec('copyfiles "./**/*.pug" "./../dist/"', './src'); //copyfiles adalah module node global.
 
 		// Compile n copy vues
 		vuecom.compileAll('./src', './dist');
@@ -38,7 +38,7 @@ const options = commandLineArgs([
 		}
 
 		// Copy front-end files kecuali .vue       //previous: await copy('./src/public', './dist/public');
-		await exec('copyfiles -e ./**/*.vue ./public/**/* ./../dist', './src');
+		await exec('copyfiles -e "./**/*.vue" "./public/**/*" "./../dist"', './src');
 		logger.info('copy public finished');
 
 	} catch (err) {
