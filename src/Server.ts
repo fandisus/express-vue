@@ -32,7 +32,7 @@ app.set('view engine', 'pug');
 /************************************************************************************
  *                              Serve public files
  ***********************************************************************************/
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/public', {maxAge:'1y'}));
 
 // The routes
 import baseRouter from './routes/mainRoute';
