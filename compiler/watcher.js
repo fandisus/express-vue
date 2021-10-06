@@ -17,7 +17,6 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const jet_logger_1 = __importDefault(require("jet-logger"));
 const child_process_1 = __importDefault(require("child_process"));
 // import path from 'path';
-const vue_compile_1 = __importDefault(require("./vue-compile"));
 // import { resolve } from 'path';
 // import e from 'express';
 // import { stderr } from 'process';
@@ -69,11 +68,6 @@ function compile(p) {
                 yield compileClientJs(p);
                 didSomething = true;
             }
-            //Client side vue
-            else if (ext === 'vue') {
-                yield compileVue(p);
-                didSomething = true;
-            }
             else { //pug, htm, html, png, gif, blah blah blah.
                 yield copy(p, dest);
                 logger.info(`Copied to ${dest}`);
@@ -116,14 +110,6 @@ function compileClientJs(p) {
                 logger.info(`Obfuscated to ${dest}`);
             }
         }
-    });
-}
-function compileVue(p) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const dest = p.replace(/src/, 'dist').replace(/\.vue$/, '.js'); //replace "src/" with "dist/", .vue with .js
-        vue_compile_1.default.compile(p, dest);
-        if (deployEnv === EnvValues.PROD)
-            yield exec(`javascript-obfuscator "${dest}" --output "${dest}"`, './');
     });
 }
 function removeDist(p) {

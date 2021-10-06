@@ -1,7 +1,9 @@
 extends ../_templates/sidebar_layout
-block bodyend 
-  script(src='/js/user-management/profiles.js')
-  script(src='/js/user-management.js')
+block bodyend
+  script(type="module").
+    import app from "/js/user-management.js";
+    Vue.createApp(app).mount('#app');
+    $('#tabs .button').tab();
 
 block htmlHead
   style.
@@ -112,4 +114,5 @@ block content
             | Cancel
 
     .ui.tab.segment(data-tab="tabProfiles")
+      link(rel="stylesheet" href="/js/user-management/profiles.css")
       profiles(ref="profiles" :menus="menuOptions", :acls="aclProfiles", @ACLUpdated="ACLProfileUpdated")

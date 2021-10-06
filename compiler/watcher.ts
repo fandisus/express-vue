@@ -3,7 +3,6 @@ import fs from 'fs-extra';
 import Logger, { Formats, LoggerModes } from 'jet-logger';
 import childProcess from 'child_process';
 // import path from 'path';
-import vuecom from './vue-compile';
 // import { resolve } from 'path';
 // import e from 'express';
 // import { stderr } from 'process';
@@ -51,8 +50,6 @@ async function compile(p:string):Promise<void> {
 		if (ext === 'ts') { await compileTs(p); didSomething = true; }
 		//Client side javascript
 		else if (ext === 'js') { await compileClientJs(p); didSomething = true; }
-		//Client side vue
-		else if (ext === 'vue') { await compileVue(p); didSomething = true; }
 		else { //pug, htm, html, png, gif, blah blah blah.
 			await copy(p, dest);
 			logger.info(`Copied to ${dest}`);
@@ -87,11 +84,6 @@ async function compileClientJs(p: string): Promise<void> {
 			logger.info(`Obfuscated to ${dest}`);
 		}
 	}
-}
-async function compileVue(p: string): Promise<void> {
-	const dest = p.replace(/src/, 'dist').replace(/\.vue$/, '.js'); //replace "src/" with "dist/", .vue with .js
-  vuecom.compile(p, dest);
-  if (deployEnv === EnvValues.PROD) await exec(`javascript-obfuscator "${dest}" --output "${dest}"`, './');
 }
 async function removeDist(p:string): Promise<void> {
 	try {

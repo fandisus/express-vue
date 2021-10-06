@@ -1,4 +1,6 @@
-<template>
+let uri = '/user/user-management';
+export default {
+  template:`
   <div>
     <!-- Add button -->
     <button class="ui mini green button" @click="showModal">
@@ -63,11 +65,7 @@
       </div>
     </div>
   </div>
-</template>
-
-<script>
-let uri = '/user/user-management'
-export default {
+  `,
   props: ['acls', 'menus'],
   data:function() {
     return {
@@ -156,10 +154,4 @@ export default {
     }
   }
 }
-</script>
 
-<style scoped>
-/* Second level option */
-#modACLMenuChoices > div > div > div.ui.checkbox { margin-left: 20px;}
-.subACL { margin-left: 20px; }
-</style>

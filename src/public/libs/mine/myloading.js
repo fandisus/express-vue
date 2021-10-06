@@ -1,4 +1,3 @@
-//$.notify.defaults({autoHideDelay:5000,className:"success", position:"top center"});
 var tr = function() {};
 //Calon tambahan: notifbar: http://red-team-design.com/cool-notification-messages-with-css3-jquery/
 $(document).ready(function() {
@@ -18,13 +17,16 @@ tr.loading = function(Show) {
 };
 tr.handleResponse = function(reply,successcb,errorcb) {
   try {
-    if (reply.result === "error") { if(typeof errorcb === 'function') errorcb(reply); else swal.fire('Error',reply.message, "error"); }
+    if (reply.result === "error") {
+      if(typeof errorcb === 'function') errorcb(reply);
+      else $('body').toast({title:'Error',message:reply.message, class:"error"});
+    }
     else if (reply.result === "success") { successcb(reply); }
     else if (reply.result === "debug") { console.log(reply.data); }
   } catch (e) {
     console.log(reply);
     console.log(e);
-    swal.fire('Error',"Unknown Error. Check console log (F12) for details", "error");
+    $('body').toast({title:'Error',message:'Unknown Error. Check console log (F12) for details', class:"error"});
   }
 };
 tr.post = function(uri,oPost, successcb,errorcb) {
@@ -90,11 +92,3 @@ var showProgress = function(e) {
 //  };
 //};
 
-var Example = (function() {
-  var that = {};
-  that.show = function(text,alertClass, duration) {
-    if (alertClass === "danger") alertClass = "error";
-    $.notify(text,{autoHideDuration:duration,className:alertClass, position:"top center"});
-  };
-  return that;
-}());
